@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+class Queue
+{
+public:
+    int A[5];
+    int front;
+    int rear;
+
+    Queue()
+    {
+        front = 0;
+        rear = -1;
+    }
+
+    void enQueue(int value)
+    {
+        if (rear == 4)
+        {
+            cout << "Queue is full." << endl;
+        }
+        else
+        {
+            rear++;
+            A[rear] = value;
+        }
+    }
+
+    void deQueue()
+    {
+        if (front > rear)
+        {
+            cout << "Queue is empty." << endl;
+        }
+        else
+        {
+            front++;
+        }
+    }
+
+    void display()
+    {
+        if (front > rear)
+        {
+            cout << "Queue is empty." << endl;
+        }
+        else
+        {
+            cout << "Elements in the Queue" << endl;
+
+            for (int i = front; i <= rear; i++)
+            {
+                cout << A[i] << "  ";
+            }
+
+            cout << endl;
+        }
+    }
+};
+
+int main()
+{
+    Queue q;
+
+    q.enQueue(2);
+    q.enQueue(3);
+    q.enQueue(14);
+
+    q.deQueue();
+
+    q.display();
+}
+
