@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+class Queue {
+    int[] queue = new int[5];
+    int front = -1;
+    int rear = -1;
+
+    void enqueue(int value) {
+        if (rear == queue.length - 1) {
+            System.out.println("Queue is Full!");
+        } else {
+            if (front == -1) {
+                front = 0;
+            }
+
+            rear++;
+            queue[rear] = value;
+            System.out.println(value + " inserted into queue.");
+        }
+    }
+
+    void dequeue() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is Empty!");
+        } else {
+            System.out.println(queue[front] + " removed from queue.");
+            front++;
+        }
+    }
+
+    void display() {
+        if (front == -1 || front > rear) {
+            System.out.println("Queue is Empty!");
+        } else {
+            System.out.print("Queue elements: ");
+
+            for (int i = front; i <= rear; i++) {
+                System.out.print(queue[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Queue q = new Queue();
+        int choice;
+
+        do {
+            System.out.println("\n--- Queue Menu ---");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Display");
+            System.out.println("4. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter value: ");
+                    int value = sc.nextInt();
+                    q.enqueue(value);
+                    break;
+
+                case 2:
+                    q.dequeue();
+                    break;
+
+                case 3:
+                    q.display();
+                    break;
+
+                case 4:
+                    System.out.println("Program Ended.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
