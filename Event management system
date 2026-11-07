@@ -1,0 +1,62 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+int main() {
+    queue<string> students;
+    int choice;
+    string name;
+
+    do {
+        cout << "\n--- College Event Entry System ---\n";
+        cout << "1. Add Student to Queue\n";
+        cout << "2. Allow Next Student Entry\n";
+        cout << "3. Display Waiting Students\n";
+        cout << "4. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter student name: ";
+                cin.ignore();
+                getline(cin, name);
+
+                students.push(name);
+                cout << name << " added to the entry queue.\n";
+                break;
+
+            case 2:
+                if (students.empty()) {
+                    cout << "No students are waiting.\n";
+                } else {
+                    cout << students.front()
+                         << " is allowed to enter the event.\n";
+                    students.pop();
+                }
+                break;
+
+            case 3:
+                if (students.empty()) {
+                    cout << "The entry queue is empty.\n";
+                } else {
+                    cout << "Students are waiting in the queue.\n";
+                    cout << "Total students waiting: "
+                         << students.size() << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Event Entry System Closed.\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
